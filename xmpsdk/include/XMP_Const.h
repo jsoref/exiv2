@@ -1120,7 +1120,7 @@ enum {
 /// \name Errors Exception handling
 /// @{
 ///
-/// XMP Tookit errors result in throwing an \c XMP_Error exception. Any exception thrown within the
+/// XMP Toolkit errors result in throwing an \c XMP_Error exception. Any exception thrown within the
 /// XMP Toolkit is caught in the toolkit and rethrown as an \c XMP_Error.
 ///
 /// The \c XMP_Error class contains a numeric code and an English explanation. New numeric codes may
