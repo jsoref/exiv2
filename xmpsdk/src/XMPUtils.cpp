@@ -215,7 +215,7 @@ AdjustTimeOverflow ( XMP_DateTime * time )
 	enum { kBillion = 1000*1000*1000L };
 
 	// ----------------------------------------------------------------------------------------------
-	// To be safe against pathalogical overflow we first adjust from month to second, then from
+	// To be safe against pathological overflow we first adjust from month to second, then from
 	// nanosecond back up to month. This leaves each value closer to zero before propagating into it.
 	// For example if the hour and minute are both near max, adjusting minutes first can cause the
 	// hour to overflow.
