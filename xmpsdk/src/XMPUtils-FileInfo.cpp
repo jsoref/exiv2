@@ -360,7 +360,7 @@ ApplyQuotes ( XMP_VarString * item, UniCodePoint openQuote, UniCodePoint closeQu
 	UniCodePoint	uniChar;
 	
 	// -----------------------------------------------------------------------------------------
-	// See if there are any separators in the value. Stop at the first occurrance. This is a bit
+	// See if there are any separators in the value. Stop at the first occurrence. This is a bit
 	// tricky in order to make typical typing work conveniently. The purpose of applying quotes
 	// is to preserve the values when splitting them back apart. That is CatenateContainerItems
 	// and SeparateContainerItems must round trip properly. For the most part we only look for
