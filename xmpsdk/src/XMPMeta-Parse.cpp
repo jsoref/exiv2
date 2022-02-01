@@ -1084,7 +1084,7 @@ ProcessUTF8Portion ( XMLParserAdapter * xmlParser,
 //
 // Both the 8-bit special cases and the encoding determination are easier to do with 8 bytes or more
 // of input. The XMLParserAdapter class has a pending-input buffer for this. At the start of parsing
-// we (moght) try to fill this buffer before determining the input character encoding. After that,
+// we (might) try to fill this buffer before determining the input character encoding. After that,
 // we (might) use this buffer with the current input to simplify the logic in Process8BitInput. The
 // "(might)" part means that we don't actually use the pending-input buffer unless we have to. In
 // particular, the common case of single-buffer parsing won't use it.
