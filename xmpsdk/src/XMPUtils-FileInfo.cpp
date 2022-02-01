@@ -210,11 +210,11 @@ ClassifyCharacter ( XMP_StringPtr fullString, size_t offset,
 
 
 // -------------------------------------------------------------------------------------------------
-// IsClosingingQuote
+// IsClosingQuote
 // -----------------
 
 static inline bool
-IsClosingingQuote ( UniCodePoint uniChar, UniCodePoint openQuote, UniCodePoint closeQuote )
+IsClosingQuote ( UniCodePoint uniChar, UniCodePoint openQuote, UniCodePoint closeQuote )
 {
 
 	if ( (uniChar == closeQuote) ||
@@ -224,7 +224,7 @@ IsClosingingQuote ( UniCodePoint uniChar, UniCodePoint openQuote, UniCodePoint c
 		return false;
 	}
 
-}	// IsClosingingQuote
+}	// IsClosingQuote
 
 
 // -------------------------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ static inline bool
 IsSurroundingQuote ( UniCodePoint uniChar, UniCodePoint openQuote, UniCodePoint closeQuote )
 {
 
-	if ( (uniChar == openQuote) || IsClosingingQuote ( uniChar, openQuote, closeQuote ) ) {
+	if ( (uniChar == openQuote) || IsClosingQuote ( uniChar, openQuote, closeQuote ) ) {
 		return true;
 	} else {
 		return false;
@@ -997,7 +997,7 @@ XMPUtils::SeparateArrayItems ( XMPMeta *	  xmpObj,
 						// This is doubled, copy it and skip the double.
 						itemValue.append ( catedStr, itemEnd, charSize );
 						itemEnd += nextSize;	// Loop will add in charSize.
-					} else if ( ! IsClosingingQuote ( uniChar, openQuote, closeQuote ) ) {
+					} else if ( ! IsClosingQuote ( uniChar, openQuote, closeQuote ) ) {
 						// This is an undoubled, non-closing quote, copy it.
 						itemValue.append ( catedStr, itemEnd, charSize );
 					} else {
