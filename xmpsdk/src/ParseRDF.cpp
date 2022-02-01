@@ -580,7 +580,7 @@ FixupQualifiedNode ( XMP_Node * xmpParent )
 			} else {
 				xmpParent->qualifiers.insert ( xmpParent->qualifiers.begin(), currQual );
 			}
-			xmpParent->children[childNum] = 0;	// We just moved it to the qualifers.
+			xmpParent->children[childNum] = 0;	// We just moved it to the qualifiers.
 		
 	}
 	
