@@ -2116,7 +2116,7 @@ XMPUtils::CompareDateTime ( const XMP_DateTime & _in_left,
 	ConvertToUTCTime ( &left );
 	ConvertToUTCTime ( &right );
 
-	// *** We could use memcmp if the XMP_DateTime stuct has no holes.
+	// *** We could use memcmp if the XMP_DateTime struct has no holes.
 
 	if ( left.year < right.year ) {
 		result = -1;
