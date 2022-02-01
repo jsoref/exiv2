@@ -777,11 +777,11 @@ XMPUtils::CatenateArrayItems ( const XMPMeta & xmpObj,
 							   XMP_StringPtr   separator,
 							   XMP_StringPtr   quotes,
 							   XMP_OptionBits  options,
-							   XMP_StringPtr * catedStr,
+							   XMP_StringPtr * concatenatedStr,
 							   XMP_StringLen * catedLen )
 {
 	XMP_Assert ( (schemaNS != 0) && (arrayName != 0) ); // ! Enforced by wrapper.
-	XMP_Assert ( (separator != 0) && (quotes != 0) && (catedStr != 0) && (catedLen != 0) ); // ! Enforced by wrapper.
+	XMP_Assert ( (separator != 0) && (quotes != 0) && (concatenatedStr != 0) && (catedLen != 0) ); // ! Enforced by wrapper.
 	
 	size_t		 strLen=0, strPos=0, charLen=0;
 	UniCharKind	 charKind;
@@ -863,7 +863,7 @@ XMPUtils::CatenateArrayItems ( const XMPMeta & xmpObj,
 	}
 	
 EXIT:
-	*catedStr = sCatenatedItems->c_str();
+	*concatenatedStr = sCatenatedItems->c_str();
 	*catedLen = sCatenatedItems->size();
 
 }	// CatenateArrayItems
@@ -878,9 +878,9 @@ XMPUtils::SeparateArrayItems ( XMPMeta *	  xmpObj,
 							   XMP_StringPtr  schemaNS,
 							   XMP_StringPtr  arrayName,
 							   XMP_OptionBits options,
-							   XMP_StringPtr  catedStr )
+							   XMP_StringPtr  concatenatedStr )
 {
-	XMP_Assert ( (schemaNS != 0) && (arrayName != 0) && (catedStr != 0) );	// ! Enforced by wrapper.
+	XMP_Assert ( (schemaNS != 0) && (arrayName != 0) && (concatenatedStr != 0) );	// ! Enforced by wrapper.
 	
 	XMP_VarString itemValue;
 	size_t itemStart, itemEnd;
@@ -926,7 +926,7 @@ XMPUtils::SeparateArrayItems ( XMPMeta *	  xmpObj,
 	// in the extraction about the string positions. They are essentially byte pointers, while the
 	// contents are UTF-8. Adding or subtracting 1 does not necessarily move 1 Unicode character!
 	
-	size_t endPos = strlen ( catedStr );
+	size_t endPos = strlen ( concatenatedStr );
 	
 	itemEnd = 0;
 	while ( itemEnd < endPos ) {
@@ -935,7 +935,7 @@ XMPUtils::SeparateArrayItems ( XMPMeta *	  xmpObj,
 		// kept when within a value, but not when alone between values.
 		
 		for ( itemStart = itemEnd; itemStart < endPos; itemStart += charSize ) {
-			ClassifyCharacter ( catedStr, itemStart, &charKind, &charSize, &uniChar );
+			ClassifyCharacter ( concatenatedStr, itemStart, &charKind, &charSize, &uniChar );
 			if ( (charKind == UCK_normal) || (charKind == UCK_quote) ) break;
 		}
 		if ( itemStart >= endPos ) break;
@@ -946,21 +946,21 @@ XMPUtils::SeparateArrayItems ( XMPMeta *	  xmpObj,
 
 			for ( itemEnd = itemStart; itemEnd < endPos; itemEnd += charSize ) {
 
-				ClassifyCharacter ( catedStr, itemEnd, &charKind, &charSize, &uniChar );
+				ClassifyCharacter ( concatenatedStr, itemEnd, &charKind, &charSize, &uniChar );
 
 				if ( (charKind == UCK_normal) || (charKind == UCK_quote) ) continue;
 				if ( (charKind == UCK_comma) && preserveCommas ) continue;
 				if ( charKind != UCK_space ) break;
 
 				if ( (itemEnd + charSize) >= endPos ) break;	// Anything left?
-				ClassifyCharacter ( catedStr, (itemEnd+charSize), &nextKind, &nextSize, &nextChar );
+				ClassifyCharacter ( concatenatedStr, (itemEnd+charSize), &nextKind, &nextSize, &nextChar );
 				if ( (nextKind == UCK_normal) || (nextKind == UCK_quote) ) continue;
 				if ( (nextKind == UCK_comma) && preserveCommas ) continue;
 				break;	// Have multiple spaces, or a space followed by a separator.
 
 			}		
 
-			itemValue.assign ( catedStr, itemStart, (itemEnd - itemStart) );
+			itemValue.assign ( concatenatedStr, itemStart, (itemEnd - itemStart) );
 		
 		} else {
 		
@@ -975,12 +975,12 @@ XMPUtils::SeparateArrayItems ( XMPMeta *	  xmpObj,
 			
 			for ( itemEnd = itemStart; itemEnd < endPos; itemEnd += charSize ) {
 
-				ClassifyCharacter ( catedStr, itemEnd, &charKind, &charSize, &uniChar );
+				ClassifyCharacter ( concatenatedStr, itemEnd, &charKind, &charSize, &uniChar );
 
 				if ( (charKind != UCK_quote) || (! IsSurroundingQuote ( uniChar, openQuote, closeQuote)) ) {
 				
 					// This is not a matching quote, just append it to the item value.
-					itemValue.append ( catedStr, itemEnd, charSize );
+					itemValue.append ( concatenatedStr, itemEnd, charSize );
 					
 				} else {
 				
@@ -988,18 +988,18 @@ XMPUtils::SeparateArrayItems ( XMPMeta *	  xmpObj,
 					// various edge cases like undoubled opening (non-closing) quotes, or end of input.
 					
 					if ( (itemEnd + charSize) < endPos ) {
-						ClassifyCharacter ( catedStr, itemEnd+charSize, &nextKind, &nextSize, &nextChar );
+						ClassifyCharacter ( concatenatedStr, itemEnd+charSize, &nextKind, &nextSize, &nextChar );
 					} else {
 						nextKind = UCK_semicolon; nextSize = 0; nextChar = 0x3B;
 					}
 					
 					if ( uniChar == nextChar ) {
 						// This is doubled, copy it and skip the double.
-						itemValue.append ( catedStr, itemEnd, charSize );
+						itemValue.append ( concatenatedStr, itemEnd, charSize );
 						itemEnd += nextSize;	// Loop will add in charSize.
 					} else if ( ! IsClosingQuote ( uniChar, openQuote, closeQuote ) ) {
 						// This is an undoubled, non-closing quote, copy it.
-						itemValue.append ( catedStr, itemEnd, charSize );
+						itemValue.append ( concatenatedStr, itemEnd, charSize );
 					} else {
 						// This is an undoubled closing quote, skip it and exit the loop.
 						itemEnd += charSize;

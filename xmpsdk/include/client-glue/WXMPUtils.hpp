@@ -92,8 +92,8 @@ extern "C" {
 #define zXMPUtils_CatenateArrayItems_1(xmpObj,schemaNS,arrayName,separator,quotes,options,catedPtr,catedLen) \
     WXMPUtils_CatenateArrayItems_1 ( xmpObj, schemaNS, arrayName, separator, quotes, options, catedPtr, catedLen, &wResult );
 
-#define zXMPUtils_SeparateArrayItems_1(xmpObj,schemaNS,arrayName,options,catedStr) \
-    WXMPUtils_SeparateArrayItems_1 ( xmpObj, schemaNS, arrayName, options, catedStr, &wResult );
+#define zXMPUtils_SeparateArrayItems_1(xmpObj,schemaNS,arrayName,options,concatenatedStr) \
+    WXMPUtils_SeparateArrayItems_1 ( xmpObj, schemaNS, arrayName, options, concatenatedStr, &wResult );
 
 #define zXMPUtils_RemoveProperties_1(xmpObj,schemaNS,propName,options) \
     WXMPUtils_RemoveProperties_1 ( xmpObj, schemaNS, propName, options, &wResult );
@@ -278,7 +278,7 @@ WXMPUtils_CatenateArrayItems_1 ( XMPMetaRef      xmpObj,
                                  XMP_StringPtr   separator,
                                  XMP_StringPtr   quotes,
                                  XMP_OptionBits  options,
-                                 XMP_StringPtr * catedStr,
+                                 XMP_StringPtr * concatenatedStr,
                                  XMP_StringLen * catedLen,
                                  WXMP_Result *   wResult );
 
@@ -287,7 +287,7 @@ WXMPUtils_SeparateArrayItems_1 ( XMPMetaRef     xmpObj,
                                  XMP_StringPtr  schemaNS,
                                  XMP_StringPtr  arrayName,
                                  XMP_OptionBits options,
-                                 XMP_StringPtr  catedStr,
+                                 XMP_StringPtr  concatenatedStr,
                                  WXMP_Result *  wResult );
 
 extern void

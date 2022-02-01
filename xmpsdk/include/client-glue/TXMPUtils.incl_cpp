@@ -414,13 +414,13 @@ CatenateArrayItems ( const TXMPMeta<tStringObj> & xmpObj,
 					 XMP_StringPtr	separator,
 					 XMP_StringPtr	quotes,
 					 XMP_OptionBits options,
-					 tStringObj *	catedStr )
+					 tStringObj *	concatenatedStr )
 {
 	XMP_StringPtr catedPtr = 0;
 	XMP_StringLen catedLen = 0;
 	WrapCheckVoid ( zXMPUtils_CatenateArrayItems_1 ( xmpObj.GetInternalRef(), schemaNS, arrayName, 
 													 separator, quotes, options, &catedPtr, &catedLen ) );
-	if ( catedStr != 0 ) catedStr->assign ( catedPtr, catedLen );
+	if ( concatenatedStr != 0 ) concatenatedStr->assign ( catedPtr, catedLen );
 	WXMPUtils_Unlock_1 ( 0 );
 }
 
@@ -431,10 +431,10 @@ SeparateArrayItems ( TXMPMeta<tStringObj> * xmpObj,
 					 XMP_StringPtr	schemaNS,
 					 XMP_StringPtr	arrayName,
 					 XMP_OptionBits options,
-					 XMP_StringPtr	catedStr )
+					 XMP_StringPtr	concatenatedStr )
 {
 	if ( xmpObj == 0 ) throw XMP_Error ( kXMPErr_BadParam, "Null output SXMPMeta pointer" );
-	WrapCheckVoid ( zXMPUtils_SeparateArrayItems_1 ( xmpObj->GetInternalRef(), schemaNS, arrayName, options, catedStr ) );
+	WrapCheckVoid ( zXMPUtils_SeparateArrayItems_1 ( xmpObj->GetInternalRef(), schemaNS, arrayName, options, concatenatedStr ) );
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -444,9 +444,9 @@ SeparateArrayItems ( TXMPMeta<tStringObj> * xmpObj,
 					 XMP_StringPtr		schemaNS,
 					 XMP_StringPtr		arrayName,
 					 XMP_OptionBits		options,
-					 const tStringObj & catedStr )
+					 const tStringObj & concatenatedStr )
 {
-	TXMPUtils::SeparateArrayItems ( xmpObj, schemaNS, arrayName, options, catedStr.c_str() );
+	TXMPUtils::SeparateArrayItems ( xmpObj, schemaNS, arrayName, options, concatenatedStr.c_str() );
 }
 
 // -------------------------------------------------------------------------------------------------

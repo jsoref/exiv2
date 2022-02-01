@@ -759,7 +759,7 @@ public:
     ///
     /// @param options Option flags to control the catenation. <<what options?>>
     ///
-    /// @param catedStr [out] A string object in which to return the catenated array items.
+    /// @param concatenatedStr [out] A string object in which to return the catenated array items.
     ///
     /// @see \c SeparateArrayItems()
 
@@ -769,7 +769,7 @@ public:
 									 XMP_StringPtr                separator,
 									 XMP_StringPtr                quotes,
 									 XMP_OptionBits               options,
-									 tStringObj *                 catedStr );
+									 tStringObj *                 concatenatedStr );
 
     // ---------------------------------------------------------------------------------------------
     /// @brief \c SeparateArrayItems() updates an array from a concatenated edit string of values.
@@ -787,14 +787,14 @@ public:
     ///
     /// @param options Option flags to control the separation. <<what options?>>
     ///
-    /// @param catedStr The concatenated array items, as created by \c CatenateArrayItems(),
+    /// @param concatenatedStr The concatenated array items, as created by \c CatenateArrayItems(),
     /// specified as a null-terminated UTF-8 string.
 
     static void SeparateArrayItems ( TXMPMeta<tStringObj> * xmpObj,
 									 XMP_StringPtr          schemaNS,
 									 XMP_StringPtr          arrayName,
 									 XMP_OptionBits         options,
-									 XMP_StringPtr          catedStr );
+									 XMP_StringPtr          concatenatedStr );
 
     // ---------------------------------------------------------------------------------------------
     /// @brief \c SeparateArrayItems() updates an array from a concatenated edit string of values.
@@ -807,7 +807,7 @@ public:
 									 XMP_StringPtr          schemaNS,
 									 XMP_StringPtr          arrayName,
 									 XMP_OptionBits         options,
-									 const tStringObj &     catedStr );
+									 const tStringObj &     concatenatedStr );
 
     // ---------------------------------------------------------------------------------------------
     /// @brief \c  RemoveProperties() removes multiple properties from an XMP object.

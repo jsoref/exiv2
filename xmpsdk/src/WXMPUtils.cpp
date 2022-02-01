@@ -508,7 +508,7 @@ WXMPUtils_CatenateArrayItems_1 ( XMPMetaRef 	 wxmpObj,
 								 XMP_StringPtr	 separator,
 								 XMP_StringPtr	 quotes,
 								 XMP_OptionBits	 options,
-								 XMP_StringPtr * catedStr,
+								 XMP_StringPtr * concatenatedStr,
 								 XMP_StringLen * catedLen,
 								 WXMP_Result *	 wResult )
 {
@@ -520,11 +520,11 @@ WXMPUtils_CatenateArrayItems_1 ( XMPMetaRef 	 wxmpObj,
 		if ( separator == 0 ) separator = "; ";
 		if ( quotes == 0 ) quotes = "\"";
 		
-		if ( catedStr == 0 ) catedStr = &voidStringPtr;
+		if ( concatenatedStr == 0 ) concatenatedStr = &voidStringPtr;
 		if ( catedLen == 0 ) catedLen = &voidStringLen;
 
 		const XMPMeta & xmpObj = WtoXMPMeta_Ref ( wxmpObj );
-		XMPUtils::CatenateArrayItems ( xmpObj, schemaNS, arrayName, separator, quotes, options, catedStr, catedLen );
+		XMPUtils::CatenateArrayItems ( xmpObj, schemaNS, arrayName, separator, quotes, options, concatenatedStr, catedLen );
 
 	XMP_EXIT_WRAPPER_KEEP_LOCK ( true )
 }
@@ -536,7 +536,7 @@ WXMPUtils_SeparateArrayItems_1 ( XMPMetaRef 	wxmpObj,
 								 XMP_StringPtr	schemaNS,
 								 XMP_StringPtr	arrayName,
 								 XMP_OptionBits options,
-								 XMP_StringPtr	catedStr,
+								 XMP_StringPtr	concatenatedStr,
 								 WXMP_Result *	wResult )
 {
 	XMP_ENTER_WRAPPER ( "WXMPUtils_SeparateArrayItems_1" )
@@ -544,10 +544,10 @@ WXMPUtils_SeparateArrayItems_1 ( XMPMetaRef 	wxmpObj,
 		if ( wxmpObj == 0 ) XMP_Throw ( "Output XMP pointer is null", kXMPErr_BadParam );
 		if ( (schemaNS == 0) || (*schemaNS == 0) ) XMP_Throw ( "Empty schema namespace URI", kXMPErr_BadSchema );
 		if ( (arrayName == 0) || (*arrayName == 0) ) XMP_Throw ( "Empty array name", kXMPErr_BadXPath );
-		if ( catedStr == 0 ) catedStr = "";
+		if ( concatenatedStr == 0 ) concatenatedStr = "";
 		
 		XMPMeta * xmpObj = WtoXMPMeta_Ptr ( wxmpObj );
-		XMPUtils::SeparateArrayItems ( xmpObj, schemaNS, arrayName, options, catedStr );
+		XMPUtils::SeparateArrayItems ( xmpObj, schemaNS, arrayName, options, concatenatedStr );
 
 	XMP_EXIT_WRAPPER
 }
