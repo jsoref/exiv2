@@ -781,7 +781,7 @@ TouchUpDataModel ( XMPMeta * xmp )
 // ----------------------
 //
 // Try to determine the character encoding, making a guess if the input is too short. We make some
-// simplifying assumtions: the first character must be U+FEFF or ASCII, U+0000 is not allowed. The
+// simplifying assumptions: the first character must be U+FEFF or ASCII, U+0000 is not allowed. The
 // XML 1.1 spec is even more strict, UTF-16 XML documents must begin with U+FEFF, and the first
 // "real" character must be '<'. Ignoring the XML declaration, the first XML character could be '<',
 // space, tab, CR, or LF.
