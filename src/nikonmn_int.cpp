@@ -1678,12 +1678,12 @@ namespace Exiv2 {
             // Mapping by Roger Larsson
             unsigned focusmetering = value.toLong(0);
             unsigned focuspoint = value.toLong(1);
-            unsigned focusused = (value.toLong(2) << 8) + value.toLong(3);
+            unsigned focussed = (value.toLong(2) << 8) + value.toLong(3);
             // TODO: enum {standard, wide} combination = standard;
             const unsigned focuspoints =   sizeof(nikonFocuspoints)
                                          / sizeof(nikonFocuspoints[0]);
 
-            if (focusmetering == 0 && focuspoint == 0 && focusused == 0) {
+            if (focusmetering == 0 && focuspoint == 0 && focussed == 0) {
                 // Special case, in Manual focus and with Nikon compacts
                 // this indicates that the field has no meaning.
                 // But when actually in "Single area, Center" this can mean
@@ -1719,14 +1719,14 @@ namespace Exiv2 {
             }
 
             // What focuspoints(!) did the camera use? add if differs
-            if (focusused == 0)
+            if (focussed == 0)
                 os << sep << " " << _("none");
-            else if (focusused != 1U<<focuspoint) {
+            else if (focussed != 1U<<focuspoint) {
                 // selected point was not the actually used one
                 // (Roger Larsson: my interpretation, verify)
                 os << sep;
                 for (unsigned fpid=0; fpid<focuspoints; fpid++)
-                    if (focusused & 1<<fpid)
+                    if (focussed & 1<<fpid)
                         os << ' ' << nikonFocuspoints[fpid];
             }
 
