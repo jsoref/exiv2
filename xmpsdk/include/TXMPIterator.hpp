@@ -93,7 +93,7 @@ public:
     void operator= ( const TXMPIterator<tStringObj> & rhs );
 
     // ---------------------------------------------------------------------------------------------
-    /// @brief Copy constructor, creates a client object refering to the same internal object.
+    /// @brief Copy constructor, creates a client object referring to the same internal object.
     ///
     /// Creates a new client iterator that refers to the same underlying iterator as an existing object.
     ///

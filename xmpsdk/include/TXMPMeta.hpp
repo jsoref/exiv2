@@ -114,7 +114,7 @@ public:
     TXMPMeta();
 
     // ---------------------------------------------------------------------------------------------
-    /// @brief Copy constructor, creates a client object refering to the same internal object.
+    /// @brief Copy constructor, creates a client object referring to the same internal object.
     ///
     /// The copy constructor creates a new \c TXMPMeta object that refers to the same internal XMP
     /// object. as an existing \c TXMPMeta object.
