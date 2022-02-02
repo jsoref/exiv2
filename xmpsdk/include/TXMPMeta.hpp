@@ -269,7 +269,7 @@ public:
     // ---------------------------------------------------------------------------------------------
     /// @brief \c RegisterNamespace() registers a namespace URI with a prefix.
     ///
-    /// If the the prefix is in use, the URI of the existing prefix is overwritten.
+    /// If the prefix is in use, the URI of the existing prefix is overwritten.
     ///
     /// This function is static; make the call directly from the concrete class (\c SXMPMeta).
     ///
