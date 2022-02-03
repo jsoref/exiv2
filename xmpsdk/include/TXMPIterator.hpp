@@ -52,7 +52,7 @@
 ///
 /// A \c TXMPIterator constructor defines a starting point for the iteration, and options that
 /// control how it proceeds. By default, iteration starts at the root and visits all nodes beneath
-/// it in a depth-first manner. The root node iteself is not visited; the first visited node is a
+/// it in a depth-first manner. The root node itself is not visited; the first visited node is a
 /// schema node. You can provide a schema name or property path to select a different starting node.
 /// By default, this visits the named root node first then all nodes beneath it in a depth-first
 /// manner.
@@ -93,7 +93,7 @@ public:
     void operator= ( const TXMPIterator<tStringObj> & rhs );
 
     // ---------------------------------------------------------------------------------------------
-    /// @brief Copy constructor, creates a client object refering to the same internal object.
+    /// @brief Copy constructor, creates a client object referring to the same internal object.
     ///
     /// Creates a new client iterator that refers to the same underlying iterator as an existing object.
     ///

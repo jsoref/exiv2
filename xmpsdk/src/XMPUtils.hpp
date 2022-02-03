@@ -184,7 +184,7 @@ public:
 						 XMP_StringPtr	 separator,
 						 XMP_StringPtr	 quotes,
 						 XMP_OptionBits	 options,
-						 XMP_StringPtr * catedStr,
+						 XMP_StringPtr * concatenatedStr,
 						 XMP_StringLen * catedLen );
 
 	static void
@@ -192,7 +192,7 @@ public:
 						 XMP_StringPtr	schemaNS,
 						 XMP_StringPtr	arrayName,
 						 XMP_OptionBits options,
-						 XMP_StringPtr	catedStr );
+						 XMP_StringPtr	concatenatedStr );
 
 	static void
 	RemoveProperties ( XMPMeta *	  xmpObj,

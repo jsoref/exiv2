@@ -90,7 +90,7 @@ Terminate()
 }
 
 // =================================================================================================
-// Constuctors, destructor, operators
+// Constructors, destructor, operators
 // ==================================
 
 static XMPMetaRef DefaultCTor()

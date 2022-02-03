@@ -580,7 +580,7 @@ FixupQualifiedNode ( XMP_Node * xmpParent )
 			} else {
 				xmpParent->qualifiers.insert ( xmpParent->qualifiers.begin(), currQual );
 			}
-			xmpParent->children[childNum] = 0;	// We just moved it to the qualifers.
+			xmpParent->children[childNum] = 0;	// We just moved it to the qualifiers.
 		
 	}
 	
@@ -744,7 +744,7 @@ RDF_NodeElementAttrs ( XMP_Node * xmpParent, const XML_Node & xmlNode, bool isTo
 			case kRDFTerm_nodeID :
 			case kRDFTerm_about  :
 
-				if ( exclusiveAttrs & kExclusiveAttrMask ) XMP_Throw ( "Mutally exclusive about, ID, nodeID attributes", kXMPErr_BadRDF );
+				if ( exclusiveAttrs & kExclusiveAttrMask ) XMP_Throw ( "Mutually exclusive about, ID, nodeID attributes", kXMPErr_BadRDF );
 				exclusiveAttrs |= (1 << attrTerm);
 
 				if ( isTopLevel && (attrTerm == kRDFTerm_about) ) {

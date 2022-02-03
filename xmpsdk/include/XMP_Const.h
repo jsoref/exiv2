@@ -100,7 +100,7 @@ typedef struct __XMPFiles__ *       XMPFilesRef;
 /// masks; see \c #kXMP_PropValueIsURI and following. A number of macros provide common set or set
 /// operations, such as \c XMP_PropIsSimple. For other tests use an expression like <code>options &
 /// kXMP_<theOption></code>. When passing multiple option flags use the bitwise-OR operator. '|',
-/// not the arithmatic plus, '+'.
+/// not the arithmetic plus, '+'.
 
 typedef const char * XMP_StringPtr;  // Points to a null terminated UTF-8 string.
 typedef XMP_Uns32    XMP_StringLen;
@@ -1120,7 +1120,7 @@ enum {
 /// \name Errors Exception handling
 /// @{
 ///
-/// XMP Tookit errors result in throwing an \c XMP_Error exception. Any exception thrown within the
+/// XMP Toolkit errors result in throwing an \c XMP_Error exception. Any exception thrown within the
 /// XMP Toolkit is caught in the toolkit and rethrown as an \c XMP_Error.
 ///
 /// The \c XMP_Error class contains a numeric code and an English explanation. New numeric codes may

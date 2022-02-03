@@ -61,7 +61,7 @@ namespace Exiv2 {
     };
 
     //! Off, Low, Normal, High, multiple tags
-    constexpr TagDetails nikonActiveDLighning[] = {
+    constexpr TagDetails nikonActiveDLighting[] = {
         {     0, N_("Off")        },
         {     1, N_("Low")        },
         {     3, N_("Normal")     },
@@ -583,7 +583,7 @@ namespace Exiv2 {
        {0x001e, "ColorSpace", N_("Color Space"), N_("Color space"), nikon3Id, makerTags, unsignedShort, -1, EXV_PRINT_TAG(nikonColorSpace)},
        {0x001f, "VRInfo", N_("VR Info"), N_("VR info"), nikon3Id, makerTags, undefined, -1, printValue},
        {0x0020, "ImageAuthentication", N_("Image Authentication"), N_("Image authentication"), nikon3Id, makerTags, unsignedByte, -1, EXV_PRINT_TAG(nikonOffOn)},
-       {0x0022, "ActiveDLighting", N_("ActiveD-Lighting"), N_("ActiveD-lighting"), nikon3Id, makerTags, unsignedShort, -1, EXV_PRINT_TAG(nikonActiveDLighning)},
+       {0x0022, "ActiveDLighting", N_("ActiveD-Lighting"), N_("ActiveD-lighting"), nikon3Id, makerTags, unsignedShort, -1, EXV_PRINT_TAG(nikonActiveDLighting)},
        {0x0023, "PictureControl", N_("Picture Control"), N_(" Picture control"), nikon3Id, makerTags, undefined, -1, printValue},
        {0x0024, "WorldTime", N_("World Time"), N_("World time"), nikon3Id, makerTags, undefined, -1, printValue},
        {0x0025, "ISOInfo", N_("ISO Info"), N_("ISO info"), nikon3Id, makerTags, undefined, -1, printValue},
@@ -1678,12 +1678,12 @@ namespace Exiv2 {
             // Mapping by Roger Larsson
             unsigned focusmetering = value.toLong(0);
             unsigned focuspoint = value.toLong(1);
-            unsigned focusused = (value.toLong(2) << 8) + value.toLong(3);
+            unsigned focussed = (value.toLong(2) << 8) + value.toLong(3);
             // TODO: enum {standard, wide} combination = standard;
             const unsigned focuspoints =   sizeof(nikonFocuspoints)
                                          / sizeof(nikonFocuspoints[0]);
 
-            if (focusmetering == 0 && focuspoint == 0 && focusused == 0) {
+            if (focusmetering == 0 && focuspoint == 0 && focussed == 0) {
                 // Special case, in Manual focus and with Nikon compacts
                 // this indicates that the field has no meaning.
                 // But when actually in "Single area, Center" this can mean
@@ -1710,7 +1710,7 @@ namespace Exiv2 {
                 // What focuspoint did the user select?
                 if (focuspoint < focuspoints) {
                     os << nikonFocuspoints[focuspoint];
-                    // TODO: os << position[fokuspoint][combination]
+                    // TODO: os << position[focuspoint][combination]
                 }
                 else
                     os << "(" << focuspoint << ")";
@@ -1718,15 +1718,15 @@ namespace Exiv2 {
                 sep = ',';
             }
 
-            // What fokuspoints(!) did the camera use? add if differs
-            if (focusused == 0)
+            // What focuspoints(!) did the camera use? add if differs
+            if (focussed == 0)
                 os << sep << " " << _("none");
-            else if (focusused != 1U<<focuspoint) {
+            else if (focussed != 1U<<focuspoint) {
                 // selected point was not the actually used one
                 // (Roger Larsson: my interpretation, verify)
                 os << sep;
                 for (unsigned fpid=0; fpid<focuspoints; fpid++)
-                    if (focusused & 1<<fpid)
+                    if (focussed & 1<<fpid)
                         os << ' ' << nikonFocuspoints[fpid];
             }
 
@@ -2620,7 +2620,7 @@ fmountlens[] = {
         {
             const unsigned char vid = static_cast<unsigned>(value.toLong(0));
 
-            /* the 'FMntLens' name is added to the annonymous struct for
+            /* the 'FMntLens' name is added to the anonymous struct for
              * fmountlens[]
              *
              * remember to name the struct when importing/updating the lens info

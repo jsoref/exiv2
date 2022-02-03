@@ -98,7 +98,7 @@ public:
     /// @}
 
     // =============================================================================================
-    // Constuctors and destructor
+    // Constructors and destructor
     // =========================
 
     // ---------------------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ public:
     TXMPMeta();
 
     // ---------------------------------------------------------------------------------------------
-    /// @brief Copy constructor, creates a client object refering to the same internal object.
+    /// @brief Copy constructor, creates a client object referring to the same internal object.
     ///
     /// The copy constructor creates a new \c TXMPMeta object that refers to the same internal XMP
     /// object. as an existing \c TXMPMeta object.
@@ -269,7 +269,7 @@ public:
     // ---------------------------------------------------------------------------------------------
     /// @brief \c RegisterNamespace() registers a namespace URI with a prefix.
     ///
-    /// If the the prefix is in use, the URI of the existing prefix is overwritten.
+    /// If the prefix is in use, the URI of the existing prefix is overwritten.
     ///
     /// This function is static; make the call directly from the concrete class (\c SXMPMeta).
     ///

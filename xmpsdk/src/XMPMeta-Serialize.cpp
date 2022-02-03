@@ -711,7 +711,7 @@ SerializeCompactRDFAttrProps ( const XMP_Node *	parentNode,
 //
 // Recursively handles the "value" for a node that must be written as an RDF property element. It
 // does not matter if it is a top level property, a field of a struct, or an item of an array.  The
-// indent is that for the property element. The patterns bwlow ignore attribute qualifiers such as
+// indent is that for the property element. The patterns below ignore attribute qualifiers such as
 // xml:lang, they don't affect the output form.
 //
 //	<ns:UnqualifiedStructProperty-1
