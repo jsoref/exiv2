@@ -1103,7 +1103,7 @@ namespace Exiv2 {
         assert(ifdId != ifdIdNotSet);
         DataBuf buf = packIfdId(image.exifData(), ifdId, pHead->byteOrder());
         if (buf.size() == 0) {
-            // Try the undecoded tag
+            // Try the raw tag
             encodeBasic(image, pCrwMapping, pHead);
         }
         if (buf.size() > 0) {
